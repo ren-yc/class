@@ -1,7 +1,10 @@
+.tag-title {
+  max-width: content-max-width;
+  margin: 0.5em auto 1em auto;
+}
 .tags-wrap {
-  max-width: 850px;
+  max-width: content-max-width;
   margin: 0 auto;
-  padding-top: 40px;
 }
 .tags-wrap .tags {
   padding-bottom: 5px;

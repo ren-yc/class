@@ -34,6 +34,12 @@
 .icon-chevron-left:before {
   content: '\e902';
 }
+.icon-clipboard-check:before {
+  content: '\e903';
+}
+.icon-clipboard:before {
+  content: '\e904';
+}
 .pagination {
   padding-bottom: 36px;
 }
@@ -51,21 +57,25 @@
 .pagination .nav-link.next {
   float: right;
 }
+.archive-title {
+  max-width: 850px;
+  margin: 0.5em auto 1em auto;
+}
 .archives-wrap {
-  padding-top: 40px;
   max-width: 850px;
   margin: 0 auto;
 }
-.archives-wrap .archive-year-wrap {
-  font-size: 30px;
+.archives-wrap .archive-year {
+  font-size: 24px;
+  font-weight: 400;
 }
 @media (prefers-color-scheme: light) {
-  .archives-wrap .archive-year-wrap {
+  .archives-wrap .archive-year {
     color: #333;
   }
 }
 @media (prefers-color-scheme: dark) {
-  .archives-wrap .archive-year-wrap {
+  .archives-wrap .archive-year {
     color: #cdcdcd;
   }
 }
@@ -369,7 +379,8 @@
   counter-reset: figure-num;
 }
 .post .post-head .post-title {
-  margin: 0px 0px 10px;
+  margin: 0px 0px 1em;
+  font-size: 30px;
 }
 .post .post-head .post-title a {
   position: relative;
@@ -450,6 +461,21 @@
   word-break: break-word;
   padding-top: 0.25em;
   padding-bottom: 0.5em;
+}
+.post p code {
+  vertical-align: middle;
+  padding: 3px 0.4em;
+  border-radius: 5px;
+}
+@media (prefers-color-scheme: light) {
+  .post p code {
+    color: $code-color-light;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .post p code {
+    color: $code-color-dark;
+  }
 }
 .post blockquote {
   padding-bottom: 0.5em;
@@ -756,6 +782,8 @@
   margin-top: 4px;
 }
 code,
+.code,
+.gutter,
 pre {
   padding: 7px;
   font-size: 16px;
@@ -763,78 +791,109 @@ pre {
 }
 @media (prefers-color-scheme: light) {
   code,
+  .code,
+  .gutter,
   pre {
     background-color: #f5f5f5;
   }
 }
 @media (prefers-color-scheme: dark) {
   code,
+  .code,
+  .gutter,
   pre {
     background-color: #333;
-  }
-}
-code {
-  padding: 3px 5px;
-}
-@media (prefers-color-scheme: light) {
-  code {
-    color: #000;
-  }
-}
-@media (prefers-color-scheme: dark) {
-  code {
-    color: #fff;
   }
 }
 .highlight {
   margin: 1em 0;
   overflow-x: auto;
   box-shadow: 1px 1px 2px rgba(0,0,0,0.125);
+  border-radius: 5px;
 }
 .highlight table {
   position: relative;
   margin: 0 !important;
 }
-.highlight table::after {
-  content: 'Code';
+.highlight table .clipboard-btn {
   position: absolute;
   top: 0;
   right: 0;
-  left: 0;
-  padding: 2px 7px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #cacaca;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0.25em;
+  margin: 10px 1em;
+  border-radius: 5px;
+  cursor: pointer;
+}
+@media (max-width: 750px) {
+  .highlight table .clipboard-btn {
+    display: none;
+  }
 }
 @media (prefers-color-scheme: light) {
-  .highlight table::after {
-    background-color: #eee;
+  .highlight table .clipboard-btn {
+    border-color: #aaa;
   }
 }
 @media (prefers-color-scheme: dark) {
-  .highlight table::after {
-    background-color: #393939;
+  .highlight table .clipboard-btn {
+    border-color: #565656;
   }
 }
-.highlight .code pre {
+@media (prefers-color-scheme: light) {
+  .highlight table .clipboard-btn {
+    background-color: #fff;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .highlight table .clipboard-btn {
+    background-color: #101010;
+  }
+}
+.highlight table .clipboard-btn i {
+  font-size: 20px;
+}
+@media (prefers-color-scheme: light) {
+  .highlight table .clipboard-btn:hover {
+    background-color: #aaa;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .highlight table .clipboard-btn:hover {
+    background-color: #565656;
+  }
+}
+@media (prefers-color-scheme: light) {
+  .highlight table .clipboard-btn:hover i {
+    color: #333;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .highlight table .clipboard-btn:hover i {
+    color: #cdcdcd;
+  }
+}
+.highlight table .code pre {
   margin: 0;
-  padding: 30px 10px 10px;
 }
 .highlight .gutter {
   width: 10px;
   color: #cacaca;
   text-align: right;
+  display: none;
 }
 .highlight .gutter pre {
   margin: 0;
-  padding: 30px 7px 10px;
 }
 .highlight .line {
   line-height: 1.45em;
 }
 .highlight table,
-.highlight tr,
-.highlight td {
+.highlight tr {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -1429,10 +1488,13 @@ del {
     border-color: #333;
   }
 }
+.tag-title {
+  max-width: 850px;
+  margin: 0.5em auto 1em auto;
+}
 .tags-wrap {
   max-width: 850px;
   margin: 0 auto;
-  padding-top: 40px;
 }
 @media (prefers-color-scheme: light) {
   .tags-wrap {
@@ -1548,7 +1610,6 @@ del {
   font-size: 16px;
   margin-top: 30px;
   line-height: 20px;
-  text-indent: 2em;
   font-weight: 200;
 }
 @media (prefers-color-scheme: light) {
