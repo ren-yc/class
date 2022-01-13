@@ -196,8 +196,32 @@
     2022
     <span class="footer-author">Yuchen Ren.</span>
     <span class="power-by">
-        Powered by <a class="hexo-link" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> and <a class="theme-link" target="_blank" rel="noopener" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+        Powered by <a class="hexo-link" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> and <a class="theme-link" target="_blank" rel="noopener" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear.</a>
     </span>
+    <span id="site_running_time"></span>
+    <script>
+        refreshSiteRunningTime();
+        function refreshSiteRunningTime() {
+            var now = new Date();
+            var y = now.getFullYear();
+            var M = now.getMonth() + 1;
+            var d = now.getDate();
+            var H = now.getHours();
+            var m = now.getMinutes();
+            var s = now.getSeconds();
+            var startDate = Date.UTC(2021, 12, 22, 18, 53, 26);
+            var nowDate = Date.UTC(y, M, d, H, m, s);
+            var intervalDate = new Date(nowDate - startDate);
+            y = intervalDate.getFullYear() - 1970;
+            M = intervalDate.getMonth();
+            d = intervalDate.getDate();
+            H = intervalDate.getHours();
+            m = intervalDate.getMinutes();
+            s = intervalDate.getSeconds();
+            document.getElementById("site_running_time").innerText = "本站已运行 " + y + " 年 " + (M > 10 ? M : '0' + M) + " 月 " + (d > 10 ? d : '0' + d) + " 日 " + (H >= 10 ? H : '0' + H ) + " 时 " + (m >= 10 ? m : '0' + m ) + " 分 " + (s >= 10 ? s : '0' + s) + " 秒";
+            setTimeout(refreshSiteRunningTime, 1000);
+        }
+    </script>
 </span>
 
       </footer>
